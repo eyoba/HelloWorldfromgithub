@@ -1,24 +1,22 @@
 version: 0.2
 
-# Compatible with older CI/CD pipeline
-
 phases:
   install:
-    runtime-versions:
-      java: corretto17
     commands:
-      - pip3 install aws-sam-cli
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      - echo Test started on `date`
+      - mvn clean compile test
   build:
     commands:
-      # Force build of user-access-service to produce zip for Lambda Layer
-      - ./gradlew :user-access-service:clean :user-access-service:build
-      - sam build
-      - sam package --s3-bucket $S3_BUCKET --output-template-file packaged_raw.yaml
-  post_build:
-    commands:
-      # Use timestamp to force update of ApiGatewayCreateDeploymentCustomResource
-      - BUILD_TIMESTAMP=$(date '+%s')
-      - envsubst '${BUILD_TIMESTAMP}' < packaged_raw.yaml > packaged.yaml
-artifacts:
+      - echo Build started on `date`
+      - mvn package shade:shade
+      - mv target/HelloWorld-1.0.jar .
+      - unzip HelloWorld-1.0.jar
+      - rm -rf target tst src buildspec.yml pom.xml HelloWorld-1.0.jar
+      - aws cloudformation package --template-file template.yml --s3-bucket $S3_BUCKET --output-template-file template-export.yml
+ artifacts:
   files:
-    - packaged.yaml
+    - template-export.yml

@@ -10,5 +10,8 @@
         <module name="HelloWorld" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="HelloWorldfromgithub" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

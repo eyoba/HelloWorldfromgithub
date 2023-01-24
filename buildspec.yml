@@ -17,7 +17,7 @@ phases:
       - unzip HelloWorld-1.0.jar
       - sam build
       - rm -rf target tst src buildspec.yml pom.xml HelloWorld-1.0.jar
-      - sam package --s3-bucket $S3_BUCKET --output-template-file template-export.yaml
+      - sam package --s3-bucket $S3_BUCKET --output-template-file template-export.yml
  artifacts:
   files:
     - template-export.yml

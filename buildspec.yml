@@ -2,20 +2,17 @@ version: 0.2
 
 phases:
   install:
-    commands:
-      # Upgrade AWS CLI to the latest version
-      - pip install --upgrade awscli
-  pre_build:
-    commands:
-      - echo Test started on `date`
-      - mvn clean compile test
+    runtime-versions:
+      java: corretto11
+    pre_build:
+      - echo nothing to do
   build:
     commands:
+      - sam build
+      - sam package --s3-bucket helloworldfromgithub --output-template-file outputtemplate.yaml
+  post_build:
+    commands:
       - echo Build started on `date`
-      - mvn package shade:shade
-      - mv target/HelloWorld-1.0.jar .
-      - unzip HelloWorld-1.0.jar
-      - rm -rf target tst src buildspec.yml pom.xml HelloWorld-1.0.jar
 artifacts:
   files:
-    - target/HelloWorld-1.0.jar
+    - outputtemplate.yaml

@@ -5,8 +5,8 @@ Transform:
 
 Parameters:
   ProjectId:
-    "Default": "",
-    Type: String
+    Default: test-develop,
+    Type: String,
     Description: AWS CodeStar projectID used to associate new resources to team members
 
 # Enable blue/green deployments using this Globals section. For instructions, see the AWS CodeStar User Guide:

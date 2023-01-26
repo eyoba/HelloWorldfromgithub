@@ -19,5 +19,4 @@ public class HelloWorldHandler implements RequestHandler<Object, Object> {
         headers.put("Content-Type", "application/json");
         return new GatewayResponse(new JSONObject().put("Output", "Hello World!").toString(), headers, 200);
     }
-
 }

@@ -5,8 +5,8 @@ Transform:
 
 Parameters:
   ProjectId:
-    Default: test-develop
     Type: String
+    Default: github-develop
     Description: AWS CodeStar projectID used to associate new resources to team members
 
 # Enable blue/green deployments using this Globals section. For instructions, see the AWS CodeStar User Guide:
@@ -23,23 +23,29 @@ Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler::handleRequest
-      Runtime: java11
+      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
+      Runtime: java8
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         GetEvent:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /
             Method: get
 
   PostHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler::handleRequest2
-      Runtime: java11
+      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
+      Runtime: java8
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         PostEvent:
           Type: Api
           Properties:
-            Path: /hello2
+            Path: /
             Method: post

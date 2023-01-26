@@ -27,7 +27,7 @@ Resources:
       Runtime: java11
       Architectures:
         - x86_64
-        MemorySize: 512
+      MemorySize: 512
       Events:
         GetEvent:
           Type: Api
@@ -40,9 +40,9 @@ Resources:
     Properties:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       Runtime: java11
-        Architectures:
-          - x86_64
-          MemorySize: 512
+      Architectures:
+        - x86_64
+      MemorySize: 512
       Events:
         PostEvent:
           Type: Api

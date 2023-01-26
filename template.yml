@@ -15,7 +15,6 @@ Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: GetHelloWorld
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler::handleRequest
       Runtime: java11
       Architectures:

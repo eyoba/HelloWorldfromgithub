@@ -5,7 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.aws.codestar.projecttemplates.GatewayResponse;
+//import com.aws.codestar.projecttemplates.GatewayResponse;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 

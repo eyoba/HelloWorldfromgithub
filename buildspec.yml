@@ -9,10 +9,10 @@ phases:
   build:
     commands:
       - sam build
-      - sam package --s3-bucket helloworldfromgithub --output-template-file outputtemplate2.yaml
+      - sam package --s3-bucket helloworldfromgithub --output-template-file outputtemplate.yaml
   post_build:
     commands:
       - echo Build started on `date`
 artifacts:
   files:
-    - outputtemplate2.yaml
+    - outputtemplate.yaml
